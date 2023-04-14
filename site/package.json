@@ -1,7 +1,7 @@
 {
-  "name": "docs",
+  "name": "py-clash-bot-site",
   "version": "0.1.0",
-  "homepage": "https://matthewmiglio.github.io/py-clash-bot",
+  "homepage": "https://py-clash-bot.vercel.app/",
   "dependencies": {
     "next": "^13.3.0",
     "prop-types": "^15.8.1",
@@ -11,9 +11,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build",
-    "export": "next export -o build",
-    "deploy": "npm run build && npm run export && nodetouch ./build/.nojekyll && gh-pages -d build -t true"
+    "build": "next build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,7 +40,6 @@
     "eslint-config-next": "^13.3.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.32.2",
-    "gh-pages": "^5.0.0",
     "touch": "^3.1.0"
   }
 }
