@@ -33,7 +33,7 @@ export default class Badge extends Component {
         >
           <Image
             alt="GitHub Python Tests"
-            src="https://github.com/matthewmiglio/py-clash-bot/actions/workflows/python-tests.yml/badge.svg"
+            src="https://github.com/matthewmiglio/py-clash-bot/actions/workflows/python-tests.yml/badge.svg?branch=master"
             content="no-cache, no-store, must-revalidate"
             height={20}
             width={142}
@@ -50,6 +50,19 @@ export default class Badge extends Component {
             content="no-cache, no-store, must-revalidate"
             height={20}
             width={88}
+          />
+        </a>
+        <a
+          style={{ marginRight: "6px" }}
+          href="https://discord.gg/mx4W9qRNgF"
+          onClick={handleClick}
+        >
+          <Image
+            alt="Discord Server"
+            src="https://img.shields.io/discord/1088595596962713790?label=Discord%20Server"
+            content="no-cache, no-store, must-revalidate"
+            height={20}
+            width={146}
           />
         </a>
       </h2>

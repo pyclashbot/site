@@ -2,6 +2,10 @@
 
 module.exports = {
   images: {
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: "https",
@@ -10,6 +14,10 @@ module.exports = {
       {
         protocol: "https",
         hostname: "github.com",
+      },
+      {
+        protocol: "https",
+        hostname: "img.shields.io",
       },
     ],
   },
