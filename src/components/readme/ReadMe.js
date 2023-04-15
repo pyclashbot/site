@@ -51,8 +51,14 @@ export default class ReadMe extends Component {
         <div className={styles.block}>
           <h2>Features</h2>
           <ul>
-            <li>Automated level-up, clan wars and donations</li>
-            <li>Automatic chest farming</li>
+            <li>
+              Automated level-up, clan wars, card requesting, battlepass
+              progress, card mastery, card upgrade, chest opening, and MORE!
+            </li>
+            <li>
+              Completely undetectable (over two years of use across multiple
+              accounts with zero bans)!
+            </li>
             <li>Multi-account support</li>
           </ul>
         </div>
@@ -69,8 +75,16 @@ export default class ReadMe extends Component {
             </li>
             <li>Run the shortcut on the desktop</li>
             <li>
-              The program will automatically install MEmu and AutoHotKey, follow
-              the installation prompts
+              The program will automatically install MEmu, follow the
+              installation prompts
+            </li>
+            <li>
+              You must manually install Clash Royale on your new MEmu client.
+            </li>
+            <li>
+              You must complete the tutorial (takes 30 seconds) then sign into
+              your account using the SuperCell ID login (or use the fresh
+              account).
             </li>
           </ol>
         </div>
@@ -94,11 +108,13 @@ export default class ReadMe extends Component {
               className={styles.demoimage}
               alt="Clash Royale gameplay"
               src={demogame}
+              placeholder="blur"
             />
             <Image
               className={styles.demoimage}
               alt="User interface"
               src={demogui}
+              placeholder="blur"
             />
           </div>
         </div>
