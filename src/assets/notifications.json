@@ -1,14 +1,8 @@
 [
     {
-        "date": "2023-04-09",
-        "header": "The Latest Notification",
-        "body": "This is the latest notification.",
+        "date": "2023-04-14",
+        "header": "New Notification Feature",
+        "body": "New notification's will appear here on startup.",
         "level": "info"
-    },
-    {
-        "date": "2023-04-08",
-        "header": "An older Notification",
-        "body": "This is an older notification, but a warning",
-        "level": "warn"
     }
 ]
