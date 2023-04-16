@@ -8,17 +8,17 @@ jest.mock("../../MeasurmentProtocol", () => ({
 }));
 
 describe("Next.js API Route: handler", () => {
-  let req: NextApiRequest;
-  let res: NextApiResponse;
+  let req;
+  let res;
 
   beforeEach(() => {
     req = {
       query: {},
-    } as NextApiRequest;
+    };
     res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
-    } as unknown as NextApiResponse;
+    };
   });
 
   afterEach(() => {
