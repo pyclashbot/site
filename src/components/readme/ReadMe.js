@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-import { handleClick } from "../../GoogleAnalytics";
+import { handleClick, handleDownload } from "../../GoogleAnalytics";
 
 import logo from "../../assets/pixel-pycb.svg";
 import demogame from "../../assets/demo-game.webp";
@@ -70,6 +70,7 @@ export default class ReadMe extends Component {
                 child={
                   <button className={styles.downloadbutton}>Download</button>
                 }
+                onClick={handleDownload}
               />{" "}
               and run the latest windows installer
             </li>
