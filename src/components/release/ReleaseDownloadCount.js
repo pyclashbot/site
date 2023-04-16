@@ -14,7 +14,7 @@ export default class ReleaseDownloadCount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      download_count: [],
+      download_count: 0,
     };
   }
   /**
