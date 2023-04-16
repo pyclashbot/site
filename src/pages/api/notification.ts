@@ -23,15 +23,15 @@ function sendAnalytics(req: NextApiRequest) {
   url.searchParams.append("api_secret", API_SECRET);
 
   const event = {
-    client_id: req.cookies._ga ?? "unknown",
+    client_id:
+      req.cookies._ga ??
+      Buffer.from(String(req.headers["x-forwarded-for"])).toString("base64"),
     events: [
       {
         name: "notification",
         params: {
           url: req.headers.referer,
           query: JSON.stringify(req.query),
-          user_agent: req.headers["user-agent"],
-          accept_language: req.headers["accept-language"],
         },
       },
     ],
