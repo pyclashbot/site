@@ -11,7 +11,7 @@ export function initializeGA() {
   ReactGA.initialize(GA_MEASUREMENT_ID, {
     gaOptions: {
       debug_mode: isDev,
-      cookieDomain: "matthewmiglio.github.io",
+      cookieDomain: "pyclashbot.vercel.app",
       cookieFlags: "SameSite=None; Secure",
     },
     gtagOptions: { debug_mode: isDev },
