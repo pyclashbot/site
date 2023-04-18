@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import { initializeGA } from "../GoogleAnalytics";
+import Script from "next/script";
 
 const Header = dynamic(() => import("../components/Header"));
 const ReadMe = dynamic(() => import("../components/readme/ReadMe"));
@@ -17,6 +18,21 @@ export default function Home() {
         url="https://pyclashbot.vercel.app/"
       />
       <ReadMe />
+      <div className="gtag-container">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Y7520HNKMG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-Y7520HNKMG');
+        `}
+        </Script>
+      </div>
     </>
   );
 }
