@@ -21,7 +21,6 @@ const ReleaseLink = ({ child, onClick }) => {
       className="release_link"
       href={releaseUrl}
       onClick={(event) => onClick(event, releaseUrl)}
-      rel="preconnect"
     >
       {child}
     </a>
