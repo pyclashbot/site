@@ -110,12 +110,14 @@ export default class ReadMe extends Component {
               alt="Clash Royale gameplay"
               src={demogame}
               placeholder="blur"
+              priority
             />
             <Image
               className={styles.demoimage}
               alt="User interface"
               src={demogui}
               placeholder="blur"
+              priority
             />
           </div>
         </div>
