@@ -28,7 +28,16 @@ describe("Next.js API Route: handler", () => {
   it("should call handleRequest with req object", () => {
     handler(req, res);
 
-    expect(handleRequest).toHaveBeenCalledWith(req);
+    if (process.env.MP_API_KEY) {
+      expect(handleRequest).toHaveBeenCalledWith(
+        req,
+        process.env.MP_API_KEY,
+        expect.anything(),
+        process.env.NODE_ENV === "development"
+      );
+    } else {
+      expect(handleRequest).not.toHaveBeenCalled();
+    }
   });
 
   it("should return all notifications when latest query param is not provided", () => {
