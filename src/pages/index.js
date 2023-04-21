@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 
 const Header = dynamic(() => import("../components/Header"));
-const ReadMe = dynamic(() => import("../components/readme/ReadMe"));
+const ReadMeCMS = dynamic(() => import("../components/readme/ReadMeCMS"));
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         keywords="clash royale, bot, automation, python, py-clash-bot"
         url="https://pyclashbot.vercel.app/"
       />
-      <ReadMe />
+      <ReadMeCMS />
     </>
   );
 }
