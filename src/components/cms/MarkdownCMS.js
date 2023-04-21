@@ -15,7 +15,7 @@ import styles from "./Markdown.module.css";
 const MarkdownLink = dynamic(() => import("./MarkdownLink"));
 const MarkdownBody = dynamic(() => import("./MarkdownBody"));
 const MarkdownHeader = dynamic(() => import("./MarkdownHeader"));
-const MarkdownSubheader = dynamic(() => import("./MarkdownHeader"));
+const MarkdownSubheader = dynamic(() => import("./MarkdownSubheader"));
 
 const MarkdownCMS = ({ readmeURL: markdownURL }) => {
   const [markdownText, setMarkdownText] = useState("");
