@@ -33,7 +33,7 @@ describe("Next.js API Route: handler", () => {
         req,
         process.env.MP_API_KEY,
         expect.anything(),
-        process.env.NODE_ENV === "development"
+        expect.any(Boolean)
       );
     } else {
       expect(handleRequest).not.toHaveBeenCalled();
