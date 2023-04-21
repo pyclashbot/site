@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import styles from "./ReadMe.module.css";
+import { handleClick } from "../../GoogleAnalytics";
 
 const README_URL =
   "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/README.md";
@@ -21,6 +22,19 @@ const ReadMeCMS = () => {
   }, []);
 
   const components = {
+    // a tags get Google Analytics event handler
+    a: ({ children, href }) => {
+      return (
+        <a
+          href={href}
+          onClick={(event) => {
+            handleClick(event);
+          }}
+        >
+          {children}
+        </a>
+      );
+    },
     // p tags get 'styles.textblock' class
     p: ({ children }) => <p className={styles.textblock}>{children}</p>,
     // h1 tags get 'styles.header' class
