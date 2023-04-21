@@ -17,16 +17,7 @@ const MarkdownBody = dynamic(() => import("./MarkdownBody"));
 const MarkdownHeader = dynamic(() => import("./MarkdownHeader"));
 const MarkdownSubheader = dynamic(() => import("./MarkdownSubheader"));
 
-const MarkdownCMS = ({ readmeURL: markdownURL }) => {
-  const [markdownText, setMarkdownText] = useState("");
-  useEffect(() => {
-    fetch(markdownURL)
-      .then((res) => res.text())
-      .then((text) => {
-        setMarkdownText(text);
-      });
-  }, [markdownURL]);
-
+const MarkdownCMS = ({ markdownText }) => {
   const components = {
     a: MarkdownLink,
     h1: MarkdownHeader,

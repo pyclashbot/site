@@ -1,10 +1,13 @@
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Header = dynamic(() => import("../components/Header"));
 const MarkdownCMS = dynamic(() => import("../components/cms/MarkdownCMS"));
 
-export default function Home() {
+const markdownURL =
+  "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/JobListDescriptions.md";
+
+function Home({ readmeText }) {
   return (
     <>
       <Header
@@ -13,11 +16,14 @@ export default function Home() {
         keywords="clash royale, bot, automation, python, py-clash-bot"
         url="https://pyclashbot.vercel.app/"
       />
-      <MarkdownCMS
-        readmeURL={
-            "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/JobListDescriptions.md"
-        }
-      />
+      <MarkdownCMS markdownText={readmeText} />
     </>
   );
 }
+export async function getServerSideProps(context) {
+  const res = await fetch(markdownURL);
+  const text = await res.text();
+  return { props: { readmeText: text } };
+}
+
+export default Home;
