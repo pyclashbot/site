@@ -13,7 +13,11 @@ export default function Home() {
         keywords="clash royale, bot, automation, python, py-clash-bot"
         url="https://pyclashbot.vercel.app/"
       />
-      <ReadMeCMS />
+      <ReadMeCMS
+        readmeURL={
+          "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/README.md"
+        }
+      />
     </>
   );
 }

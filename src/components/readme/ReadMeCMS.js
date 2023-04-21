@@ -8,18 +8,15 @@ import rehypeRaw from "rehype-raw";
 import styles from "./ReadMe.module.css";
 import { handleClick } from "../../GoogleAnalytics";
 
-const README_URL =
-  "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/README.md";
-
-const ReadMeCMS = () => {
+const ReadMeCMS = ({ readmeURL }) => {
   const [readme, setReadme] = useState("");
   useEffect(() => {
-    fetch(README_URL)
+    fetch(readmeURL)
       .then((res) => res.text())
       .then((text) => {
         setReadme(text);
       });
-  }, []);
+  }, [readmeURL]);
 
   const components = {
     // a tags get Google Analytics event handler
@@ -47,12 +44,7 @@ const ReadMeCMS = () => {
     h6: ({ children }) => <h6 className={styles.subheader}>{children}</h6>,
     // p's with images get 'demo' class
     p: ({ children }) => {
-      let hasImage = false;
-      children.forEach((child) => {
-        if (child.type === "img") {
-          hasImage = true;
-        }
-      });
+      const hasImage = children.find((child) => child.type === "img");
       return (
         <p className={hasImage ? styles.demo : styles.textblock}>{children}</p>
       );
@@ -60,17 +52,19 @@ const ReadMeCMS = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.block}>
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
-          components={components}
-        >
-          {readme}
-        </ReactMarkdown>
+    readme !== "" && (
+      <div className={styles.container}>
+        <div className={styles.block}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
+            components={components}
+          >
+            {readme}
+          </ReactMarkdown>
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
