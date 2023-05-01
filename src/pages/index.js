@@ -14,8 +14,8 @@ function Home({ readmeText }) {
         title="py-clash-bot"
         description="A Clash Royale automation bot written in Python"
         keywords="clash royale, bot, automation, python, py-clash-bot"
-        url="https://pyclashbot.app/"
-        canonicalUrl="https://pyclashbot.app/"
+        url="https://www.pyclashbot.app/"
+        canonicalUrl="https://www.pyclashbot.app/"
       />
       <MarkdownCMS markdownText={readmeText} />
     </>
