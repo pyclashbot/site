@@ -1,26 +1,13 @@
-.Readme {
+.container {
     display: flex;
     flex-direction: column;
     align-items: baseline;
 }
 
 @media only screen and (max-width: 600px) {
-    .Readme {
+    .container {
         font-size: 14px;
     }
-}
-
-.Readme p {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.Readme ul {
-    list-style: square;
-}
-
-.Readme ol li {
-    padding-bottom: 6px;
 }
 
 .block {
@@ -54,26 +41,22 @@
     height: auto;
 }
 
-.ReadMe h1 {
+.header {
     background-color: #018281;
     color: #FFFFFF;
     box-shadow: inset -2px -2px 0px #FFFFFF, inset 2px 2px 0px #000000;
     -webkit-box-shadow: inset -2px -2px 0px #FFFFFF, inset 2px 2px 0px #000000;
     -moz-box-shadow: inset -2px -2px 0px #FFFFFF, inset 2px 2px 0px #000000;
-    padding: 5px 0px 5px 10px;
+    padding: 8px 0px 5px 10px;
 }
 
-.ReadMe h2,
-.ReadMe h3,
-.ReadMe h4,
-.ReadMe h5,
-.ReadMe h6 {
+.subheader {
     background-color: #018281;
     color: #FFFFFF;
     box-shadow: inset -1px -2px 0px #FFFFFF, inset 2px 2px 0px #000000;
     -webkit-box-shadow: inset -1px -2px 0px #FFFFFF, inset 2px 2px 0px #000000;
     -moz-box-shadow: inset -1px -2px 0px #FFFFFF, inset 2px 2px 0px #000000;
-    padding: 2px 0px 2px 6px;
+    padding: 6px 0px 3px 6px;
     margin: 10px 0;
 }
 
@@ -99,5 +82,4 @@
     width: 50%;
     display: block;
     height: auto;
-    object-fit: scale-down;
 }

@@ -5,17 +5,16 @@ const Header = dynamic(() => import("../components/Header"));
 const MarkdownCMS = dynamic(() => import("../components/cms/MarkdownCMS"));
 
 const markdownURL =
-  "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/README.md";
+  "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/CONTRIBUTING.md";
 
 function Home({ readmeText }) {
   return (
     <>
       <Header
-        title="py-clash-bot"
+        title="py-clash-bot Contributing"
         description="A Clash Royale automation bot written in Python"
         keywords="clash royale, bot, automation, python, py-clash-bot"
-        url="https://pyclashbot.app/"
-        canonicalUrl="https://pyclashbot.app/"
+        url="https://pyclashbot.vercel.app/"
       />
       <MarkdownCMS markdownText={readmeText} />
     </>
