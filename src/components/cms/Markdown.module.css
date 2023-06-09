@@ -26,9 +26,6 @@
     height: fit-content;
 }
 
-.textblock {
-    width: calc(100% - 125px);
-}
 
 .logoblock {
     flex: 1;
