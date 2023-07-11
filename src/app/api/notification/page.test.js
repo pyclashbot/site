@@ -1,9 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import handler from "./notification";
-import notifications from "../../assets/notifications.json";
-import { handleRequest } from "../../MeasurmentProtocol.js";
+import handler from "./page";
+import notifications from "@/assets/notifications.json";
+import { handleRequest } from "@/MeasurmentProtocol";
 
-jest.mock("../../MeasurmentProtocol", () => ({
+jest.mock("../../../MeasurmentProtocol", () => ({
   handleRequest: jest.fn(),
 }));
 
