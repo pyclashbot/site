@@ -8,7 +8,7 @@ let envSchema = z.object({
 });
 let env = envSchema.parse(process.env);
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   // authorization
   const { searchParams } = new URL(request.url);
   if (searchParams.get("code") !== env.API_ROUTE_SECRET) {
