@@ -31,6 +31,9 @@ export async function POST(request: NextRequest) {
     color?: number;
   } = JSON.parse(reqBody);
   console.log("Embed data:", data);
+  if (data.title) {
+    data.title = "📦 | " + data.title;
+  }
   await SendEmbed(webhookUrl, {
     title: "📦 | New Pre-Release",
     url: "https://github.com/matthewmiglio/py-clash-bot/releases/latest",
