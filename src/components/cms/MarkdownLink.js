@@ -1,5 +1,4 @@
 import React from "react";
-import { handleClick } from "../../GoogleAnalytics";
 
 const MarkdownLink = ({ href, children }) => {
   // if href links to .md file, it should really link to the page
@@ -9,16 +8,7 @@ const MarkdownLink = ({ href, children }) => {
     const pageNameLower = pageName.toLowerCase();
     href = `/${pageNameLower}`;
   }
-  return (
-    <a
-      href={href}
-      onClick={(event) => {
-        handleClick(event);
-      }}
-    >
-      {children}
-    </a>
-  );
+  return <a href={href}>{children}</a>;
 };
 
 export default MarkdownLink;

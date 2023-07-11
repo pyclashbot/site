@@ -1,0 +1,63 @@
+import "@/styles/global.css";
+import Script from "next/script";
+export const metadata = {
+  title: {
+    template: "%s | py-clash-bot",
+    default: "py-clash-bot",
+  },
+  description: "Automated Clash Royale",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
+  openGraph: {
+    title: "py-clash-bot",
+    description: "Automated Clash Royale",
+    locale: "en_US",
+    type: "website",
+  },
+  icons: {
+    icon: "/pixel-pycb.svg",
+    shortcut: "/pixel-pycb.ico",
+  },
+  themeColor: "#ffffff",
+  twitter: {
+    title: "py-clash-bot",
+    description: "Automated Clash Royale",
+    card: "summary_large_image",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  other: { "msapplication-TileColor": "#3bc4c1" },
+};
+
+export default async function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${process.env.GA_MEASUREMENT_ID}');
+        `,
+          }}
+        />
+        {children}
+      </body>
+    </html>
+  );
+}
