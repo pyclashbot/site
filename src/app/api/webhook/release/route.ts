@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  // send embed
+  // parse body
   const webhookUrl = env.DISCORD_WEBHOOK_RELEASE;
   const reqBody = await request.text();
   if (reqBody === "") {
@@ -34,10 +34,15 @@ export async function POST(request: NextRequest) {
   if (data.title) {
     data.title = "📦 | " + data.title;
   }
+  if (data.description) {
+    data.description += "\n<@&1128136563201671221>";
+  }
+  // send embed
   await SendEmbed(webhookUrl, {
     title: "🎁 | New Release",
     url: "https://github.com/matthewmiglio/py-clash-bot/releases/latest",
     color: 0x03fc49,
+    description: "<@&1128136563201671221>",
     ...data,
   });
 
