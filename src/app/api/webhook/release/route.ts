@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
     timestamp?: Date;
     color?: number;
   } = JSON.parse(reqBody);
+  console.log("Embed data:", data);
   await SendEmbed(webhookUrl, {
     title: "🎁 | New Release",
     url: "https://github.com/matthewmiglio/py-clash-bot/releases/latest",
