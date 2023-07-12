@@ -19,8 +19,7 @@ export const metadata = {
     type: "website",
   },
   icons: {
-    icon: "/pixel-pycb.svg",
-    shortcut: "/pixel-pycb.ico",
+    icon: "/favicon.ico",
   },
   themeColor: "#ffffff",
   twitter: {
