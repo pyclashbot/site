@@ -6,6 +6,7 @@ export async function SendEmbed(
     url?: string;
     timestamp?: Date;
     color?: number;
+    tagId?: string;
   }
 ) {
   const embed = {
@@ -15,14 +16,28 @@ export async function SendEmbed(
     timestamp: data.timestamp,
     color: data.color,
   };
+  const body: {
+    embeds: {
+      title?: string;
+      description?: string;
+      url?: string;
+      timestamp?: Date;
+      color?: number;
+    }[];
+    content?: string;
+  } = {
+    embeds: [embed],
+  };
+
+  if (data.tagId) {
+    body["content"] = `<@&${data.tagId}>`;
+  }
 
   await fetch(webhookUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      embeds: [embed],
-    }),
+    body: JSON.stringify(body),
   });
 }
