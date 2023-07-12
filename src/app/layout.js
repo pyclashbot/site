@@ -17,6 +17,13 @@ export const metadata = {
     description: "Automated Clash Royale",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://pyclashbot.app/og",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   icons: {
     icon: "/favicon.ico",
@@ -26,6 +33,7 @@ export const metadata = {
     title: "py-clash-bot",
     description: "Automated Clash Royale",
     card: "summary_large_image",
+    images: ["https://pyclashbot.app/og"],
   },
   viewport: {
     width: "device-width",
