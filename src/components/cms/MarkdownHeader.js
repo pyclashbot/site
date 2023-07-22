@@ -1,8 +1,11 @@
 import React from "react";
-import styles from "./Markdown.module.css";
 
 const MarkdownHeader = ({ children }) => {
-  return <h1 className={styles.header}>{children}</h1>;
+  return (
+    <h1 className="bg-accent p-2 text-3xl font-bold text-white shadow-header">
+      {children}
+    </h1>
+  );
 };
 
 export default MarkdownHeader;

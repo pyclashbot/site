@@ -1,11 +1,23 @@
 import React from "react";
-import styles from "./Markdown.module.css";
 
 const MarkdownBody = ({ children }) => {
+  children = children.filter((child) => child !== " ");
   const hasImage = children.find((child) => child.type === "img");
-  return (
-    <p className={hasImage ? styles.demo : styles.textblock}>{children}</p>
-  );
+  if (hasImage) {
+    return <div className="flex items-start">{children}</div>;
+  }
+
+  const hasLinks = children.every((child) => {
+    if (child.props) {
+      return child.props.href;
+    }
+    return false;
+  });
+  if (hasLinks) {
+    return <div className="flex gap-1">{children}</div>;
+  }
+
+  return <div className="px-2">{children}</div>;
 };
 
 export default MarkdownBody;

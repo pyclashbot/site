@@ -1,5 +1,10 @@
 import "@/styles/global.css";
 import Script from "next/script";
+import { Noto_Sans_Mono as Font } from "next/font/google";
+import { ReactNode } from "react";
+
+const font = Font({ subsets: ["latin"] });
+
 export const metadata = {
   title: {
     template: "%s | py-clash-bot",
@@ -46,10 +51,14 @@ export const metadata = {
   other: { "msapplication-TileColor": "#3bc4c1" },
 };
 
-export default async function RootLayout({ children }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${font.className} bg-background`}>
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
@@ -66,7 +75,9 @@ export default async function RootLayout({ children }) {
         `,
           }}
         />
-        {children}
+        <div className="mx-auto flex h-screen min-h-screen max-w-screen-lg flex-col items-center justify-between  text-black sm:w-full">
+          {children}
+        </div>
       </body>
     </html>
   );

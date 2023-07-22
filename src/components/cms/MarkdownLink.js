@@ -8,7 +8,11 @@ const MarkdownLink = ({ href, children }) => {
     const pageNameLower = pageName.toLowerCase();
     href = `/${pageNameLower}`;
   }
-  return <a href={href}>{children}</a>;
+  return (
+    <a href={href} className="text-accent hover:underline">
+      {children}
+    </a>
+  );
 };
 
 export default MarkdownLink;
