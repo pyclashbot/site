@@ -6,7 +6,9 @@ const markdownURL =
 
 async function Index() {
   const res = await fetch(markdownURL, { next: { revalidate: 6000 } });
-  const readmeText = await res.text();
+  let readmeText = await res.text();
+  readmeText +=
+    "\n\n## Links\n **[View py-clash-bot on GitHub](https://github.com/matthewmiglio/py-clash-bot)**";
   return <MarkdownCMS markdownText={readmeText} />;
 }
 
