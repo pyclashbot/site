@@ -17,7 +17,7 @@ const MarkdownBody = ({ children }: { children: any }) => {
     return false;
   });
   if (hasLinks) {
-    return <div className="flex gap-1">{children}</div>;
+    return <div className="flex gap-1 p-1">{children}</div>;
   }
 
   return <div className="px-2">{children}</div>;

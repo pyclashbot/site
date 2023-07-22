@@ -24,7 +24,7 @@ const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
   return (
     markdownText !== "" && (
       <div className="flex flex-col align-baseline">
-        <div className="mt-2 bg-foreground px-1 py-2 shadow-header">
+        <div className="m-0 sm:mt-2 bg-foreground p-3 shadow-header">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
