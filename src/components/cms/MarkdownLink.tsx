@@ -1,11 +1,17 @@
 import React from "react";
 
-const MarkdownLink = ({ href, children }) => {
+const MarkdownLink = ({
+  href,
+  children,
+}: {
+  children: React.ReactNode;
+  href: string;
+}) => {
   // if href links to .md file, it should really link to the page
   if (href.includes(".md")) {
     const fileName = href.split("/").pop();
-    const pageName = fileName.replace(".md", "");
-    const pageNameLower = pageName.toLowerCase();
+    const pageName = fileName?.replace(".md", "");
+    const pageNameLower = pageName?.toLowerCase();
     href = `/${pageNameLower}`;
   }
   return (

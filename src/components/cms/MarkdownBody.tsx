@@ -1,13 +1,16 @@
 import React from "react";
 
-const MarkdownBody = ({ children }) => {
-  children = children.filter((child) => child !== " ");
-  const hasImage = children.find((child) => child.type === "img");
+const MarkdownBody = ({ children }: { children: any }) => {
+  if (typeof children === "string") {
+    return <div className="px-2">{children}</div>;
+  }
+  children = children.filter((child: any) => child !== " ");
+  const hasImage = children.find((child: any) => child.type === "img");
   if (hasImage) {
     return <div className="flex items-start">{children}</div>;
   }
 
-  const hasLinks = children.every((child) => {
+  const hasLinks = children.every((child: any) => {
     if (child.props) {
       return child.props.href;
     }

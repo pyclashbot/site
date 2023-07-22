@@ -9,8 +9,8 @@ import MarkdownLink from "./MarkdownLink";
 import MarkdownSubheader from "./MarkdownSubheader";
 import { MarkdownOL, MarkdownUL, MarkdownLI } from "./MarkdownList";
 
-const MarkdownCMS = ({ markdownText }) => {
-  const components = {
+const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
+  const components: any = {
     a: MarkdownLink,
     h1: MarkdownHeader,
     h2: MarkdownSubheader,
