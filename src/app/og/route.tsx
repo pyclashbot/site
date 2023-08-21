@@ -31,7 +31,7 @@ export async function GET() {
             }}
           >
             <img
-              src="https://pyclashbot.app/pixel-pycb80.svg"
+              src="https://www.pyclashbot.app/pixel-pycb80.svg"
               alt="py-clash-bot"
               style={{ width: "250px", height: "250px" }}
             />
@@ -57,7 +57,7 @@ export async function GET() {
       {
         width: 1200,
         height: 630,
-      }
+      },
     );
   } catch (e: any) {
     console.log(`${e.message}`);
