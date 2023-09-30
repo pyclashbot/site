@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const MarkdownLink = ({
   href,
@@ -15,9 +16,9 @@ const MarkdownLink = ({
     href = `/${pageNameLower}`;
   }
   return (
-    <a href={href} className="text-accent hover:underline">
+    <Link href={href ?? ""} className="text-accent hover:underline">
       {children}
-    </a>
+    </Link>
   );
 };
 
