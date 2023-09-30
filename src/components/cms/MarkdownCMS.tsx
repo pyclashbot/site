@@ -1,7 +1,6 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
 import MarkdownBody from "./MarkdownBody";
 import MarkdownCode from "./MarkdownCode";
 import MarkdownHeader from "./MarkdownHeader";
@@ -10,7 +9,7 @@ import MarkdownSubheader from "./MarkdownSubheader";
 import { MarkdownOL, MarkdownUL, MarkdownLI } from "./MarkdownList";
 
 const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
-  const components: any = {
+  const components: Partial<Components> = {
     a: MarkdownLink,
     h1: MarkdownHeader,
     h2: MarkdownSubheader,
@@ -24,12 +23,8 @@ const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
   return (
     markdownText !== "" && (
       <div className="flex flex-col align-baseline">
-        <div className="m-0 lg:mt-2 bg-foreground p-3 shadow-header">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
-            components={components}
-          >
+        <div className="m-0 bg-foreground p-3 shadow-header lg:mt-2">
+          <ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
             {markdownText}
           </ReactMarkdown>
         </div>
