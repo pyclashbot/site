@@ -12,6 +12,7 @@ export const metadata = {
   },
   description:
     "An open-source application that allows users to automate their Clash Royale gameplay on Windows using an emulated Android phone.",
+    metadataBase: new URL('https://www.pyclashbot.app'),
   openGraph: {
     title: "py-clash-bot",
     description:
@@ -20,14 +21,14 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.pyclashbot.app/og",
+        url: "/og?v1",
         width: 1200,
         height: 630,
       },
     ],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.ico?v1",
   },
   themeColor: "#ffffff",
   twitter: {
@@ -35,7 +36,7 @@ export const metadata = {
     description:
       "An open-source application that allows users to automate their Clash Royale gameplay on Windows using an emulated Android phone.",
     card: "summary_large_image",
-    images: ["https://www.pyclashbot.app/og"],
+    images: ["/og?v1"],
   },
   viewport: {
     width: "device-width",
