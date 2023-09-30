@@ -1,23 +1,44 @@
 import React from "react";
 
-const MarkdownBody = ({ children }: { children: any }) => {
-  if (typeof children === "string") {
+const MarkdownBody = ({
+  children,
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>) => {
+  if (!children) return <></>;
+  if (
+    typeof children === "string" ||
+    typeof children === "number" ||
+    typeof children === "boolean" ||
+    React.isValidElement(children)
+  ) {
     return <div className="px-2">{children}</div>;
   }
-  children = children.filter((child: any) => child !== " ");
-  const hasImage = children.find((child: any) => child.type === "img");
-  if (hasImage) {
-    return <div className="flex items-start">{children}</div>;
-  }
 
-  const hasLinks = children.every((child: any) => {
-    if (child.props) {
-      return child.props.href;
+  if (Array.isArray(children)) {
+    let childArr = Array.from(children);
+    childArr = childArr.filter((child: React.ReactNode) => child !== " ");
+
+    // check if any children are images
+    if (
+      childArr.some(
+        (child: React.ReactNode) =>
+          React.isValidElement(child) && child?.type == "img",
+      )
+    ) {
+      return <div className="flex items-start">{children}</div>;
     }
-    return false;
-  });
-  if (hasLinks) {
-    return <div className="flex gap-1 p-1">{children}</div>;
+
+    // check if all children are links
+    if (
+      childArr.every(
+        (child: React.ReactNode) =>
+          React.isValidElement(child) && child?.props?.href,
+      )
+    ) {
+      return <div className="flex gap-1 p-1">{children}</div>;
+    }
   }
 
   return <div className="px-2">{children}</div>;
