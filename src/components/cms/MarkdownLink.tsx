@@ -16,7 +16,12 @@ const MarkdownLink = ({
     href = `/${pageNameLower}`;
   }
   return (
-    <Link href={href ?? ""} className="text-accent hover:underline">
+    <Link
+      href={href ?? ""}
+      className="text-accent hover:underline"
+      data-umami-event="link click"
+      data-umami-event-href={href ?? ""}
+    >
       {children}
     </Link>
   );

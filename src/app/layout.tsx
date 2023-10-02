@@ -2,6 +2,12 @@ import "@/styles/global.css";
 import Script from "next/script";
 import { Noto_Sans_Mono as Font } from "next/font/google";
 import { ReactNode } from "react";
+import { z } from "zod";
+
+const schema = z.object({
+  ANALYTICS_ID: z.string(),
+});
+const env = schema.parse(process.env);
 
 const font = Font({ subsets: ["latin"] });
 
@@ -12,7 +18,7 @@ export const metadata = {
   },
   description:
     "An open-source application that allows users to automate their Clash Royale gameplay on Windows using an emulated Android phone.",
-    metadataBase: new URL('https://www.pyclashbot.app'),
+  metadataBase: new URL("https://www.pyclashbot.app"),
   openGraph: {
     title: "py-clash-bot",
     description:
@@ -53,24 +59,17 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://analytics.pyclashbot.app/script.js"
+          data-website-id={env.ANALYTICS_ID}
+          data-domains="pyclashbot.app,www.pyclashbot.app"
+        />
+        <link rel="canonical" href="https://www.pyclashbot.app/" />
+      </head>
       <body className={`${font.className} bg-background`}>
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.GA_MEASUREMENT_ID}');
-        `,
-          }}
-        />
-        <div className="mx-auto flex h-screen min-h-screen max-w-screen-lg flex-col items-center justify-between  text-black sm:w-full">
+        <div className="mx-auto flex h-screen min-h-screen max-w-screen-lg flex-col items-center justify-between text-black sm:w-full">
           {children}
         </div>
       </body>
