@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
   // send embed
   await SendEmbed(webhookUrl, {
     title: "🎁 | New Release",
-    url: "https://github.com/matthewmiglio/py-clash-bot/releases/latest",
+    url: "https://github.com/pyclashbot/py-clash-bot/releases/latest",
     color: 0x03fc49,
     tagId: "1128136563201671221",
     ...data,

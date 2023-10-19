@@ -1,14 +1,16 @@
 import React from "react";
 import MarkdownCMS from "@/components/cms/MarkdownCMS";
 
+export const revalidate = 3600;
+
 const markdownURL =
-  "https://raw.githubusercontent.com/matthewmiglio/py-clash-bot/master/JobListDescriptions.md";
+  "https://raw.githubusercontent.com/pyclashbot/py-clash-bot/master/JobListDescriptions.md";
 
 async function JobListDescriptions() {
-  const res = await fetch(markdownURL, { next: { revalidate: 6000 } });
+  const res = await fetch(markdownURL);
   let readmeText = await res.text();
   readmeText +=
-    "\n\n## Links\n **[View py-clash-bot on GitHub](https://github.com/matthewmiglio/py-clash-bot)**";
+    "\n\n## Links\n **[View py-clash-bot on GitHub](https://github.com/pyclashbot/py-clash-bot)**";
   return <MarkdownCMS markdownText={readmeText} />;
 }
 
