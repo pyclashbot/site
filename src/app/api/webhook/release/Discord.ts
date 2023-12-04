@@ -7,7 +7,7 @@ export async function SendEmbed(
     timestamp?: Date;
     color?: number;
     tagId?: string;
-  }
+  },
 ) {
   const embed = {
     title: data.title,

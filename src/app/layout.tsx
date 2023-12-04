@@ -1,6 +1,6 @@
 import "@/styles/global.css";
-import Script from "next/script";
 import { Noto_Sans_Mono as Font } from "next/font/google";
+import Script from "next/script";
 import { ReactNode } from "react";
 import { z } from "zod";
 

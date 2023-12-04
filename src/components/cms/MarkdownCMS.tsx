@@ -1,12 +1,12 @@
-import React from "react";
-import ReactMarkdown, { Components } from "react-markdown";
-import rehypeRaw from "rehype-raw";
 import MarkdownBody from "./MarkdownBody";
 import MarkdownCode from "./MarkdownCode";
 import MarkdownHeader from "./MarkdownHeader";
 import MarkdownLink from "./MarkdownLink";
-import MarkdownSubheader from "./MarkdownSubheader";
 import { MarkdownOL, MarkdownUL, MarkdownLI } from "./MarkdownList";
+import MarkdownSubheader from "./MarkdownSubheader";
+import React from "react";
+import ReactMarkdown, { Components } from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
   const components: Partial<Components> = {

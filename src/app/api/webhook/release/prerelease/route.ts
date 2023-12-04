@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { SendEmbed } from "../Discord";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 let envSchema = z.object({

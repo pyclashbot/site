@@ -1,5 +1,5 @@
-import React from "react";
 import MarkdownCMS from "@/components/cms/MarkdownCMS";
+import React from "react";
 
 export const revalidate = 3600;
 
