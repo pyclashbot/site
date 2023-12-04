@@ -11,18 +11,20 @@ const env = schema.parse(process.env);
 
 const font = Font({ subsets: ["latin"] });
 
+const title = "py-clash-bot - Automated Clash Royale";
+const description =
+  "An open-source application that allows users to automate their Clash Royale gameplay on Windows using an emulated Android phone.";
+
 export const metadata = {
   title: {
     template: "%s | py-clash-bot",
-    default: "py-clash-bot - Automated Clash Royale",
+    default: title,
   },
-  description:
-    "An open-source application that allows users to automate their Clash Royale gameplay on Windows using an emulated Android phone.",
+  description,
   metadataBase: new URL("https://www.pyclashbot.app"),
   openGraph: {
-    title: "py-clash-bot",
-    description:
-      "An open-source application that allows users to automate their Clash Royale gameplay on Windows using an emulated Android phone.",
+    title,
+    description,
     locale: "en_US",
     type: "website",
     images: [
@@ -36,20 +38,12 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico?v1",
   },
-  themeColor: "#ffffff",
   twitter: {
-    title: "py-clash-bot",
-    description:
-      "An open-source application that allows users to automate their Clash Royale gameplay on Windows using an emulated Android phone.",
+    title,
+    description,
     card: "summary_large_image",
     images: ["/og?v1"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
-  other: { "msapplication-TileColor": "#3bc4c1" },
 };
 
 export default async function RootLayout({
