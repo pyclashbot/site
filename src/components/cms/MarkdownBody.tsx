@@ -13,7 +13,7 @@ const MarkdownBody = ({
     typeof children === "boolean" ||
     React.isValidElement(children)
   ) {
-    return <div className="px-2">{children}</div>;
+    return <div>{children}</div>;
   }
 
   if (Array.isArray(children)) {
@@ -37,11 +37,11 @@ const MarkdownBody = ({
           React.isValidElement(child) && child?.props?.href,
       )
     ) {
-      return <div className="flex gap-1 p-1">{children}</div>;
+      return <div className="flex gap-1 pb-1 pt-1">{children}</div>;
     }
   }
 
-  return <div className="px-2">{children}</div>;
+  return <div>{children}</div>;
 };
 
 export default MarkdownBody;

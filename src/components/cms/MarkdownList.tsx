@@ -6,7 +6,7 @@ const MarkdownUL = ({
   React.HTMLAttributes<HTMLUListElement>,
   HTMLUListElement
 >) => {
-  return <ul className="list-inside list-disc px-2">{children}</ul>;
+  return <ul className="list-inside list-disc space-y-1">{children}</ul>;
 };
 
 const MarkdownOL = ({
@@ -15,7 +15,7 @@ const MarkdownOL = ({
   React.OlHTMLAttributes<HTMLOListElement>,
   HTMLOListElement
 >) => {
-  return <ol className="list-inside list-decimal px-2">{children}</ol>;
+  return <ol className="list-inside list-decimal space-y-1">{children}</ol>;
 };
 
 const MarkdownLI = ({
@@ -24,7 +24,7 @@ const MarkdownLI = ({
   React.LiHTMLAttributes<HTMLLIElement>,
   HTMLLIElement
 >) => {
-  return <li className="my-1">{children}</li>;
+  return <li>{children}</li>;
 };
 
 export { MarkdownUL, MarkdownLI, MarkdownOL };

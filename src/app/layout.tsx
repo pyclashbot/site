@@ -1,5 +1,6 @@
+import Footer from "@/components/Footer";
 import "@/styles/global.css";
-import { Noto_Sans_Mono as Font } from "next/font/google";
+import { Gantari as Font } from "next/font/google";
 import Script from "next/script";
 import { ReactNode } from "react";
 import { z } from "zod";
@@ -48,9 +49,9 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
       <head>
@@ -62,9 +63,10 @@ export default async function RootLayout({
         />
         <link rel="canonical" href="https://www.pyclashbot.app/" />
       </head>
-      <body className={`${font.className} bg-background`}>
-        <div className="mx-auto flex h-screen min-h-screen max-w-screen-lg flex-col items-center justify-between text-black sm:w-full">
-          {children}
+      <body className={`${font.className} antialiased`}>
+        <div className="mx-auto flex w-11/12 max-w-screen-md flex-col">
+          <div className="flex min-h-screen flex-col">{children}</div>
+          <Footer />
         </div>
       </body>
     </html>

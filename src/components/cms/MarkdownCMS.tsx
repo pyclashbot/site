@@ -23,11 +23,9 @@ const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
   return (
     markdownText !== "" && (
       <div className="flex flex-col align-baseline">
-        <div className="m-0 bg-foreground p-3 shadow-header lg:mt-2">
-          <ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
-            {markdownText}
-          </ReactMarkdown>
-        </div>
+        <ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
+          {markdownText}
+        </ReactMarkdown>
       </div>
     )
   );

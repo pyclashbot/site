@@ -18,7 +18,7 @@ const MarkdownLink = ({
   return (
     <Link
       href={href ?? ""}
-      className="text-accent hover:underline"
+      className="text-accent-foreground underline hover:opacity-80"
       data-umami-event="link click"
       data-umami-event-href={href ?? ""}
     >

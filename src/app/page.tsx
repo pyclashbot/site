@@ -10,7 +10,7 @@ async function Index() {
   const res = await fetch(markdownURL);
   let readmeText = await res.text();
   readmeText +=
-    "\n\n## Links\n **[View py-clash-bot on GitHub](https://github.com/pyclashbot/py-clash-bot)**";
+    "\n\n## Links\n [View py-clash-bot on GitHub](https://github.com/pyclashbot/py-clash-bot)";
   return <MarkdownCMS markdownText={readmeText} />;
 }
 
