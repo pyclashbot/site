@@ -7,6 +7,7 @@ import MarkdownSubheader from "./MarkdownSubheader";
 import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 
 const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
   const components: Partial<Components> = {
@@ -23,7 +24,10 @@ const MarkdownCMS = ({ markdownText }: { markdownText: string }) => {
   return (
     markdownText !== "" && (
       <div className="flex flex-col align-baseline">
-        <ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
+        <ReactMarkdown
+          rehypePlugins={[rehypeRaw, remarkGfm]}
+          components={components}
+        >
           {markdownText}
         </ReactMarkdown>
       </div>
