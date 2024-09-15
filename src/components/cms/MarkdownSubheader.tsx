@@ -6,7 +6,7 @@ const MarkdownSubheader = ({
   React.AnchorHTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement
 >) => {
-  return <h2 className="pb-2 pt-4 text-3xl font-bold">{children}</h2>;
+  return <h3 className="pb-2 pt-4 text-3xl font-semibold">{children}</h3>;
 };
 
 export default MarkdownSubheader;
