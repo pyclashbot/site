@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import Provider from "@/components/providers/GlobalProvider";
 import "@/styles/global.css";
 import { Gantari as Font } from "next/font/google";
 import Script from "next/script";
@@ -63,12 +64,14 @@ export default async function RootLayout({
         />
         <link rel="canonical" href="https://www.pyclashbot.app/" />
       </head>
+      <Provider>
       <body className={`${font.className} antialiased`}>
         <div className="mx-auto flex w-11/12 max-w-screen-md flex-col">
           <div className="flex min-h-screen flex-col">{children}</div>
           <Footer />
         </div>
       </body>
+      </Provider>
     </html>
   );
 }
