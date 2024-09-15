@@ -145,7 +145,7 @@ function PlanWrapper({
         <TooltipTrigger className="select-none blur-sm" aria-hidden asChild>
           {children}
         </TooltipTrigger>
-        <TooltipContent sideOffset={8} align="center">
+        <TooltipContent sideOffset={-80} align="center">
           Coming soon
         </TooltipContent>
       </Tooltip>
