@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 import { z } from "zod";
 
 const schema = z.object({
-  ANALYTICS_ID: z.string(),
+  ANALYTICS_ID: z.string().optional(),
 });
 const env = schema.parse(process.env);
 
