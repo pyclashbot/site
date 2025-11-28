@@ -1,12 +1,11 @@
-import React from "react";
+import type { ReactNode } from 'react'
 
-const MarkdownSubheader = ({
-  children,
-}: React.DetailedHTMLProps<
-  React.AnchorHTMLAttributes<HTMLHeadingElement>,
-  HTMLHeadingElement
->) => {
-  return <h2 className="pb-2 pt-4 text-3xl font-bold">{children}</h2>;
-};
+interface MarkdownSubheaderProps {
+  children?: ReactNode
+}
 
-export default MarkdownSubheader;
+const MarkdownSubheader = ({ children }: MarkdownSubheaderProps) => {
+  return <h2 className="pb-2 pt-4 text-3xl font-bold">{children}</h2>
+}
+
+export default MarkdownSubheader

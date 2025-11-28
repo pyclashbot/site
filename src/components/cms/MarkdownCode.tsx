@@ -1,9 +1,11 @@
-import React from "react";
+import type { ReactNode } from 'react'
 
-const MarkdownCode = ({
-  children,
-}: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
-  return <code className="">{children}</code>;
-};
+interface MarkdownCodeProps {
+  children?: ReactNode
+}
 
-export default MarkdownCode;
+const MarkdownCode = ({ children }: MarkdownCodeProps) => {
+  return <code>{children}</code>
+}
+
+export default MarkdownCode

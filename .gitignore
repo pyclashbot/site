@@ -1,5 +1,18 @@
+# Build outputs
 build
-.next
+dist
+.output
+
+# SST
+.sst
+
+# TanStack
+.tanstack
+routeTree.gen.ts
+
+# Vite
+*.local
+vite.config.ts.timestamp-*
 
 # Logs
 logs

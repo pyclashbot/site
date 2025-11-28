@@ -1,30 +1,19 @@
-import React from "react";
+import type { ReactNode } from 'react'
 
-const MarkdownUL = ({
-  children,
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLUListElement>,
-  HTMLUListElement
->) => {
-  return <ul className="list-inside list-disc space-y-1">{children}</ul>;
-};
+interface MarkdownListProps {
+  children?: ReactNode
+}
 
-const MarkdownOL = ({
-  children,
-}: React.DetailedHTMLProps<
-  React.OlHTMLAttributes<HTMLOListElement>,
-  HTMLOListElement
->) => {
-  return <ol className="list-inside list-decimal space-y-1">{children}</ol>;
-};
+const MarkdownUL = ({ children }: MarkdownListProps) => {
+  return <ul className="list-inside list-disc space-y-1">{children}</ul>
+}
 
-const MarkdownLI = ({
-  children,
-}: React.DetailedHTMLProps<
-  React.LiHTMLAttributes<HTMLLIElement>,
-  HTMLLIElement
->) => {
-  return <li>{children}</li>;
-};
+const MarkdownOL = ({ children }: MarkdownListProps) => {
+  return <ol className="list-inside list-decimal space-y-1">{children}</ol>
+}
 
-export { MarkdownUL, MarkdownLI, MarkdownOL };
+const MarkdownLI = ({ children }: MarkdownListProps) => {
+  return <li>{children}</li>
+}
+
+export { MarkdownUL, MarkdownLI, MarkdownOL }
