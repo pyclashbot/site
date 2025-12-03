@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 import appCss from '@/assets/index.css?url'
+import Navbar from '@/components/Navbar'
 import { Outlet, createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 
@@ -26,18 +27,11 @@ export const Route = createRootRoute({
     links: [
       { rel: 'canonical', href: 'https://www.pyclashbot.app/' },
       { rel: 'icon', href: '/favicon.ico' },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com',
-      },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossOrigin: 'anonymous',
-      },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600;700&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap',
       },
       { rel: 'stylesheet', href: appCss },
     ],
@@ -69,9 +63,10 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased">
-        <div className="mx-auto flex w-11/12 max-w-screen-md flex-col">
+        <Navbar />
+        <main className="mx-auto flex w-full max-w-3xl flex-col px-6 py-8 md:px-8">
           <div className="flex min-h-screen flex-col">{children}</div>
-        </div>
+        </main>
         <Scripts />
       </body>
     </html>
@@ -81,7 +76,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 function NotFoundPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-24">
-      <h1 className="mb-4 text-4xl font-bold text-primary">404</h1>
+      <h1 className="mb-4 text-4xl font-bold text-foreground">404</h1>
       <p className="text-muted-foreground">Page not found</p>
     </main>
   )

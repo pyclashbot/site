@@ -13,7 +13,7 @@ const MarkdownBody = ({ children }: MarkdownBodyProps) => {
     typeof children === 'boolean' ||
     isValidElement(children)
   ) {
-    return <div>{children}</div>
+    return <p className="mb-4 leading-relaxed text-muted-foreground">{children}</p>
   }
 
   if (Array.isArray(children)) {
@@ -21,7 +21,7 @@ const MarkdownBody = ({ children }: MarkdownBodyProps) => {
 
     // check if any children are images
     if (childArr.some((child: ReactNode) => isValidElement(child) && child?.type === 'img')) {
-      return <div className="flex items-start">{children}</div>
+      return <div className="mb-4 flex items-start">{children}</div>
     }
 
     // check if all children are links
@@ -31,11 +31,11 @@ const MarkdownBody = ({ children }: MarkdownBodyProps) => {
           isValidElement(child) && (child?.props as { href?: string })?.href
       )
     ) {
-      return <div className="flex gap-1 pb-1 pt-1">{children}</div>
+      return <div className="mb-4 flex gap-2">{children}</div>
     }
   }
 
-  return <div>{children}</div>
+  return <p className="mb-4 leading-relaxed text-muted-foreground">{children}</p>
 }
 
 export default MarkdownBody

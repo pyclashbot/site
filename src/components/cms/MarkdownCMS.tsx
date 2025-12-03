@@ -12,6 +12,10 @@ interface MarkdownCMSProps {
   markdownText: string
 }
 
+const MarkdownSeparator = () => {
+  return <hr className="my-8 border-border" />
+}
+
 const MarkdownCMS = ({ markdownText }: MarkdownCMSProps) => {
   const components: Partial<Components> = {
     a: MarkdownLink,
@@ -22,6 +26,7 @@ const MarkdownCMS = ({ markdownText }: MarkdownCMSProps) => {
     ul: MarkdownUL,
     li: MarkdownLI,
     ol: MarkdownOL,
+    hr: MarkdownSeparator,
   }
 
   if (!markdownText) {

@@ -11,7 +11,6 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     tanstackStart({
-      target: 'aws-lambda',
       prerender: {
         enabled: true,
         autoSubfolderIndex: true,

@@ -5,15 +5,15 @@ interface MarkdownListProps {
 }
 
 const MarkdownUL = ({ children }: MarkdownListProps) => {
-  return <ul className="list-inside list-disc space-y-1">{children}</ul>
+  return <ul className="mb-4 ml-6 list-disc space-y-2 text-muted-foreground">{children}</ul>
 }
 
 const MarkdownOL = ({ children }: MarkdownListProps) => {
-  return <ol className="list-inside list-decimal space-y-1">{children}</ol>
+  return <ol className="mb-4 ml-6 list-decimal space-y-2 text-muted-foreground">{children}</ol>
 }
 
 const MarkdownLI = ({ children }: MarkdownListProps) => {
-  return <li>{children}</li>
+  return <li className="leading-relaxed">{children}</li>
 }
 
 export { MarkdownUL, MarkdownLI, MarkdownOL }

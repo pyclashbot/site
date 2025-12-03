@@ -20,11 +20,14 @@ const MarkdownLink = ({ href, children }: MarkdownLinkProps) => {
   // Check if it's an external link
   const isExternal = resolvedHref.startsWith('http') || resolvedHref.startsWith('//')
 
+  const className =
+    'text-accent font-medium underline-offset-4 transition-colors hover:text-accent/80 hover:underline'
+
   if (isExternal) {
     return (
       <a
         href={resolvedHref}
-        className="text-accent-foreground underline hover:opacity-80"
+        className={className}
         data-umami-event="link click"
         data-umami-event-href={resolvedHref}
         target="_blank"
@@ -38,7 +41,7 @@ const MarkdownLink = ({ href, children }: MarkdownLinkProps) => {
   return (
     <Link
       to={resolvedHref}
-      className="text-accent-foreground underline hover:opacity-80"
+      className={className}
       data-umami-event="link click"
       data-umami-event-href={resolvedHref}
     >
