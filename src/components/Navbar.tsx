@@ -1,11 +1,8 @@
 import logo from '@/assets/pixel-pycb.png'
 import { Link } from '@tanstack/react-router'
 
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Contributing', href: '/contributing' },
-  { label: 'GitHub', href: 'https://github.com/pyclashbot/py-clash-bot', external: true },
-]
+const linkClass =
+  'text-sm text-muted-foreground transition-colors hover:text-foreground'
 
 export default function Navbar() {
   return (
@@ -16,28 +13,33 @@ export default function Navbar() {
           <span className="font-semibold text-foreground">py-clash-bot</span>
         </Link>
         <div className="flex items-center gap-6">
-          {navLinks.map((link) =>
-            link.external ? (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: 'text-foreground' }}
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+          <Link to="/" className={linkClass} activeProps={{ className: 'text-foreground' }}>
+            Home
+          </Link>
+          <Link
+            to="/releases"
+            search={{ tab: 'stable', page: 1 }}
+            className={linkClass}
+            activeOptions={{ includeSearch: false }}
+            activeProps={{ className: 'text-foreground' }}
+          >
+            Downloads
+          </Link>
+          <Link
+            to="/contributing"
+            className={linkClass}
+            activeProps={{ className: 'text-foreground' }}
+          >
+            Contributing
+          </Link>
+          <a
+            href="https://github.com/pyclashbot/py-clash-bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+          >
+            GitHub
+          </a>
         </div>
       </nav>
     </header>

@@ -11,10 +11,15 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     tanstackStart({
+      target: 'aws-lambda',
       prerender: {
         enabled: true,
         autoSubfolderIndex: true,
         crawlLinks: true,
+      },
+      sitemap: {
+        enabled: true,
+        host: 'https://pyclashbot.app',
       },
     }),
     tailwindcss(),

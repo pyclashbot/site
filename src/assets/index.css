@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import "tw-animate-css";
 
 @theme {
   --color-background: #0a0f1a;
@@ -9,8 +10,8 @@
   --color-popover-foreground: #e2e8f0;
   --color-primary: #1e3a5f;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #64748b;
-  --color-secondary-foreground: #ffffff;
+  --color-secondary: hsl(120, 46%, 58%);
+  --color-secondary-foreground: hsl(10, 19%, 11%);
   --color-muted: #1e293b;
   --color-muted-foreground: #94a3b8;
   --color-accent: #3b82f6;
@@ -33,7 +34,6 @@
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 }
 
-/* Dark mode is default */
 :root {
   color-scheme: dark;
 }
@@ -57,4 +57,13 @@ html {
 ::selection {
   background-color: var(--color-primary);
   color: white;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

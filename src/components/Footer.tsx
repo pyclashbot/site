@@ -1,3 +1,5 @@
+import { Link } from '@tanstack/react-router'
+
 const authors: { name: string; url?: string }[] = [
   { name: 'Martin Miglio', url: 'https://martinmiglio.dev' },
   { name: 'Matthew Miglio' },
@@ -6,7 +8,7 @@ const authors: { name: string; url?: string }[] = [
 export default function Footer() {
   return (
     <footer className="mt-16 py-8">
-      <div className="text-center text-sm text-muted-foreground">
+      <div className="flex items-center justify-between text-sm text-muted-foreground">
         <p>
           © {new Date().getFullYear()}{' '}
           {authors.map((author, index) => (
@@ -29,6 +31,22 @@ export default function Footer() {
             </span>
           ))}
         </p>
+        <div className="flex items-center gap-4">
+          <Link
+            to="/license"
+            className="text-foreground underline-offset-4 hover:underline"
+          >
+            License
+          </Link>
+          <a
+            href="https://github.com/pyclashbot/py-clash-bot"
+            className="text-foreground underline-offset-4 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
       </div>
     </footer>
   )

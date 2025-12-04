@@ -11,10 +11,8 @@ export const Route = createFileRoute('/contributing')({
   staleTime: STALE_TIME,
   loader: async () => {
     const res = await fetch(markdownURL)
-    let readmeText = await res.text()
-    readmeText +=
-      '\n\n## Links\n **[View py-clash-bot on GitHub](https://github.com/pyclashbot/py-clash-bot)**'
-    return { markdown: readmeText }
+    const markdown = await res.text()
+    return { markdown }
   },
   component: ContributingPage,
 })
