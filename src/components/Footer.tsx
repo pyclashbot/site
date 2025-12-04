@@ -18,7 +18,7 @@ export default function Footer() {
               {author.url ? (
                 <a
                   href={author.url}
-                  className="text-foreground underline-offset-4 hover:underline"
+                  className="text-foreground underline underline-offset-4 hover:text-accent"
                   data-umami-event={`Footer - ${author.name}`}
                   target="_blank"
                   rel="noopener noreferrer"

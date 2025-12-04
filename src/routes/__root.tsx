@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 import appCss from '@/assets/index.css?url'
+import geistFont from '@/assets/fonts/Geist-Variable.woff2?url'
+import geistMonoFont from '@/assets/fonts/GeistMono-Variable.woff2?url'
 import Navbar from '@/components/Navbar'
 import { Outlet, createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
@@ -25,14 +27,10 @@ export const Route = createRootRoute({
       { name: 'twitter:description', content: description },
     ],
     links: [
+      { rel: 'preload', href: geistFont, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+      { rel: 'preload', href: geistMonoFont, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
       { rel: 'canonical', href: 'https://www.pyclashbot.app/' },
       { rel: 'icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap',
-      },
       { rel: 'stylesheet', href: appCss },
     ],
     scripts: [
@@ -60,6 +58,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <head>
+        <title>{title}</title>
         <HeadContent />
       </head>
       <body className="font-sans antialiased">

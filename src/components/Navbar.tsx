@@ -9,7 +9,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
       <nav className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6 md:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="py-clash-bot" width={32} height={32} />
+          <img src={logo} alt="" width={32} height={32} />
           <span className="font-semibold text-foreground">py-clash-bot</span>
         </Link>
         <div className="flex items-center gap-6">

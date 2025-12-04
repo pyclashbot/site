@@ -21,7 +21,7 @@ const MarkdownLink = ({ href, children }: MarkdownLinkProps) => {
   const isExternal = resolvedHref.startsWith('http') || resolvedHref.startsWith('//')
 
   const className =
-    'text-accent font-medium underline-offset-4 transition-colors hover:text-accent/80 hover:underline'
+    'text-accent font-medium underline underline-offset-4 transition-colors hover:text-accent/80'
 
   if (isExternal) {
     return (
