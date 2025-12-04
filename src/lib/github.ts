@@ -1,5 +1,4 @@
 import { Octokit } from '@octokit/rest'
-import { createServerFn } from '@tanstack/react-start'
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
@@ -97,10 +96,12 @@ export async function getLatestRelease(): Promise<Release> {
   return formatRelease(data)
 }
 
-// Server function for client-side fetching via TanStack Query
-export const getLatestReleaseFn = createServerFn().handler(async () => {
-  return getLatestRelease()
-})
+export async function fetchRepoFile(tag: string, path: string): Promise<string> {
+  const url = `https://raw.githubusercontent.com/${REPO.owner}/${REPO.repo}/${tag}/${path}`
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`Failed to fetch ${path}: ${res.status}`)
+  return res.text()
+}
 
 type GitHubRelease = Awaited<
   ReturnType<typeof octokit.repos.listReleases>

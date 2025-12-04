@@ -7,18 +7,16 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { fetchRepoFile, getLatestRelease } from '@/lib/github'
 import { createFileRoute } from '@tanstack/react-router'
-
-const licenseURL =
-  'https://raw.githubusercontent.com/pyclashbot/py-clash-bot/master/LICENSE'
 
 const STALE_TIME = 15 * 60 * 1000 // 15 minutes
 
 export const Route = createFileRoute('/license')({
   staleTime: STALE_TIME,
   loader: async () => {
-    const res = await fetch(licenseURL)
-    const license = await res.text()
+    const release = await getLatestRelease()
+    const license = await fetchRepoFile(release.tag_name, 'LICENSE')
     return { license }
   },
   component: LicensePage,

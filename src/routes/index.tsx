@@ -1,18 +1,16 @@
 import Footer from '@/components/Footer'
-import HeroWithRelease from '@/components/HeroWithRelease'
+import Hero from '@/components/Hero'
 import MarkdownCMS from '@/components/cms/MarkdownCMS'
+import { fetchRepoFile, getLatestRelease } from '@/lib/github'
 import { Link, createFileRoute } from '@tanstack/react-router'
-
-const markdownURL =
-  'https://raw.githubusercontent.com/pyclashbot/py-clash-bot/master/README.md'
 
 const STALE_TIME = 15 * 60 * 1000 // 15 minutes
 
 export const Route = createFileRoute('/')({
   staleTime: STALE_TIME,
   loader: async () => {
-    const res = await fetch(markdownURL)
-    let markdown = await res.text()
+    const release = await getLatestRelease()
+    let markdown = await fetchRepoFile(release.tag_name, 'README.md')
     // Strip h1 (first line) - we render it separately with download button
     markdown = markdown.replace(/^#\s+.+\n/, '')
     // Replace GitHub releases links with our releases page
@@ -22,17 +20,17 @@ export const Route = createFileRoute('/')({
     )
     // Replace LICENSE link with our license page
     markdown = markdown.replace(/\]\(LICENSE\)/g, '](/license)')
-    return { markdown }
+    return { release, markdown }
   },
   component: HomePage,
 })
 
 function HomePage() {
-  const { markdown } = Route.useLoaderData()
+  const { release, markdown } = Route.useLoaderData()
 
   return (
     <>
-      <HeroWithRelease>
+      <Hero assets={release.assets}>
         <Link
           to="/releases"
           search={{ tab: 'stable', page: 1 }}
@@ -40,7 +38,7 @@ function HomePage() {
         >
           More downloads
         </Link>
-      </HeroWithRelease>
+      </Hero>
 
       <MarkdownCMS markdownText={markdown} />
       <Footer />
