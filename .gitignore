@@ -2,6 +2,7 @@
 build
 dist
 .output
+.nitro
 
 # SST
 .sst

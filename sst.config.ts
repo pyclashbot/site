@@ -21,9 +21,8 @@ export default $config({
 
     const baseDomain = isProduction ? 'pyclashbot.app' : `${stage}.pyclashbot.app`
 
-    // TODO: Update with your Route53 hosted zone ID after setup
     const dns = sst.aws.dns({
-      zone: 'PLACEHOLDER_HOSTED_ZONE_ID',
+      zone: 'Z018325532CS6EQFY59HX',
     })
 
     const router = new sst.aws.Router('ApiRouter', {
