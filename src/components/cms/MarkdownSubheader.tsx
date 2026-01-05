@@ -1,15 +1,15 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 interface MarkdownSubheaderProps {
-  children?: ReactNode
+	children?: ReactNode;
 }
 
 const MarkdownSubheader = ({ children }: MarkdownSubheaderProps) => {
-  return (
-    <h2 className="mb-3 mt-8 border-l-2 border-primary pl-4 text-2xl font-semibold text-foreground">
-      {children}
-    </h2>
-  )
-}
+	return (
+		<h2 className="mt-8 mb-3 border-primary border-l-2 pl-4 font-semibold text-2xl text-foreground">
+			{children}
+		</h2>
+	);
+};
 
-export default MarkdownSubheader
+export default MarkdownSubheader;

@@ -4,18 +4,17 @@
 /* deno-fmt-ignore-file */
 
 declare module "sst" {
-  export interface Resource {
-    "ApiRouter": {
-      "type": "sst.aws.Router"
-      "url": string
-    }
-    "PyclashbotSite": {
-      "type": "sst.aws.TanstackStart"
-      "url": string
-    }
-  }
+	export interface Resource {
+		ApiRouter: {
+			type: "sst.aws.Router";
+			url: string;
+		};
+		PyclashbotSite: {
+			type: "sst.aws.TanstackStart";
+			url: string;
+		};
+	}
 }
 /// <reference path="sst-env.d.ts" />
 
-import "sst"
-export {}
+import "sst";

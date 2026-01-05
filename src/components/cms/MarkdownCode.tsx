@@ -1,15 +1,15 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 interface MarkdownCodeProps {
-  children?: ReactNode
+	children?: ReactNode;
 }
 
 const MarkdownCode = ({ children }: MarkdownCodeProps) => {
-  return (
-    <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">
-      {children}
-    </code>
-  )
-}
+	return (
+		<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-foreground text-sm">
+			{children}
+		</code>
+	);
+};
 
-export default MarkdownCode
+export default MarkdownCode;

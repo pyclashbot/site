@@ -1,13 +1,15 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 interface MarkdownHeaderProps {
-  children?: ReactNode
+	children?: ReactNode;
 }
 
 const MarkdownHeader = ({ children }: MarkdownHeaderProps) => {
-  return (
-    <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground">{children}</h1>
-  )
-}
+	return (
+		<h1 className="mb-4 font-bold text-4xl text-foreground tracking-tight">
+			{children}
+		</h1>
+	);
+};
 
-export default MarkdownHeader
+export default MarkdownHeader;
