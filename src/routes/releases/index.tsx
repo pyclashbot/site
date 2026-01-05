@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
+import { ReleasesTable } from '@/components/ReleasesTable'
 import {
   Pagination,
   PaginationContent,
@@ -7,19 +8,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { getLatestRelease, listReleasesForTab } from '@/lib/github'
-import { Button } from '@/components/ui/button'
 import { Link, createFileRoute, useNavigate } from '@tanstack/react-router'
-import { MoreHorizontal } from 'lucide-react'
 
 const STALE_TIME = 5 * 60 * 1000 // 5 minutes
 
@@ -52,6 +43,13 @@ function ReleasesPage() {
     })
   }
 
+  const handleReleaseClick = (tag: string) => {
+    navigate({
+      to: '/releases/$tag',
+      params: { tag },
+    })
+  }
+
   return (
     <>
       <Hero
@@ -79,69 +77,14 @@ function ReleasesPage() {
               found.
             </p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Version</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Downloads</TableHead>
-                  <TableHead className="w-10"></TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {releases.map((release) => {
-                  const totalDownloads = release.assets.reduce(
-                    (sum, asset) => sum + asset.download_count,
-                    0
-                  )
-                  return (
-                    <TableRow
-                      key={release.tag_name}
-                      className="cursor-pointer"
-                      onClick={() =>
-                        navigate({
-                          to: '/releases/$tag',
-                          params: { tag: release.tag_name },
-                        })
-                      }
-                    >
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium">{release.name}</span>
-                          {release.prerelease && (
-                            <span className="rounded bg-accent/20 px-2 py-0.5 text-xs text-accent">
-                              Pre-release
-                            </span>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-muted-foreground">
-                        {new Date(release.published_at).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell className="text-muted-foreground">
-                        {totalDownloads.toLocaleString()}
-                      </TableCell>
-                      <TableCell>
-                        <Button variant="ghost" size="icon" asChild>
-                          <Link
-                            to="/releases/$tag"
-                            params={{ tag: release.tag_name }}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <MoreHorizontal className="h-5 w-5" />
-                          </Link>
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  )
-                })}
-              </TableBody>
-            </Table>
+            <ReleasesTable
+              releases={releases}
+              onReleaseClick={handleReleaseClick}
+            />
           )}
         </TabsContent>
       </Tabs>
 
-      {/* Pagination */}
       {(pagination.hasNextPage || page > 1) && (
         <Pagination className="mt-8">
           <PaginationContent>
