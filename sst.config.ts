@@ -19,6 +19,12 @@ export default $config({
 		const stage = $app.stage;
 		const isProduction = stage === "production";
 
+		// Secrets
+		const apiRouteSecret = new sst.Secret("ApiRouteSecret");
+		const discordWebhookRelease = new sst.Secret("DiscordWebhookRelease");
+		const discordWebhookPrerelease = new sst.Secret("DiscordWebhookPrerelease");
+		const githubToken = new sst.Secret("GithubToken");
+
 		const baseDomain = isProduction
 			? "pyclashbot.app"
 			: `${stage}.pyclashbot.app`;
@@ -40,10 +46,10 @@ export default $config({
 				instance: router,
 			},
 			environment: {
-				API_ROUTE_SECRET: process.env.API_ROUTE_SECRET || "",
-				DISCORD_WEBHOOK_RELEASE: process.env.DISCORD_WEBHOOK_RELEASE || "",
-				DISCORD_WEBHOOK_PRERELEASE:
-					process.env.DISCORD_WEBHOOK_PRERELEASE || "",
+				API_ROUTE_SECRET: apiRouteSecret.value,
+				DISCORD_WEBHOOK_RELEASE: discordWebhookRelease.value,
+				DISCORD_WEBHOOK_PRERELEASE: discordWebhookPrerelease.value,
+				GITHUB_TOKEN: githubToken.value,
 				ANALYTICS_ID: process.env.ANALYTICS_ID || "",
 			},
 		});

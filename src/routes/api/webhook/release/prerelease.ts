@@ -3,7 +3,7 @@ import { z } from "zod";
 import { SendEmbed } from "@/lib/discord";
 
 const envSchema = z.object({
-	API_ROUTE_SECRET: z.string(),
+	API_ROUTE_SECRET: z.string().min(1),
 	DISCORD_WEBHOOK_PRERELEASE: z.string().url(),
 });
 
@@ -11,46 +11,84 @@ export const Route = createFileRoute("/api/webhook/release/prerelease")({
 	server: {
 		handlers: {
 			POST: async ({ request }) => {
-				const env = envSchema.parse(process.env);
+				// Validate environment configuration
+				const envResult = envSchema.safeParse(process.env);
+				if (!envResult.success) {
+					const missing = envResult.error.issues
+						.map((i) => i.path.join("."))
+						.join(", ");
+					console.error(
+						`[webhook/prerelease] Environment configuration error: missing or invalid: ${missing}`,
+					);
+					return new Response("Internal server error", { status: 500 });
+				}
+				const env = envResult.data;
 
 				// Authorization
 				const { searchParams } = new URL(request.url);
-				if (searchParams.get("code") !== env.API_ROUTE_SECRET) {
-					return new Response("You are not authorized to call this API", {
-						status: 401,
-					});
+				const code = searchParams.get("code");
+
+				if (!code) {
+					console.warn(
+						"[webhook/prerelease] Authorization failed: no code parameter provided",
+					);
+					return new Response("Unauthorized", { status: 401 });
+				}
+
+				if (code !== env.API_ROUTE_SECRET) {
+					console.warn(
+						"[webhook/prerelease] Authorization failed: invalid code parameter",
+					);
+					return new Response("Unauthorized", { status: 401 });
 				}
 
 				// Parse body
 				const reqBody = await request.text();
 				if (reqBody === "") {
-					return new Response("No body", { status: 400 });
+					console.warn("[webhook/prerelease] Bad request: empty body");
+					return new Response("Bad request", { status: 400 });
 				}
 
-				const data: {
+				let data: {
 					title?: string;
 					description?: string;
 					url?: string;
 					timestamp?: Date;
 					color?: number;
-				} = JSON.parse(reqBody);
+				};
 
-				console.log("Embed data:", data);
+				try {
+					data = JSON.parse(reqBody);
+				} catch {
+					console.warn("[webhook/prerelease] Bad request: invalid JSON body");
+					return new Response("Bad request", { status: 400 });
+				}
+
+				console.log("[webhook/prerelease] Processing embed:", data);
 
 				if (data.title) {
 					data.title = `📦 | ${data.title}`;
 				}
 
 				// Send embed
-				await SendEmbed(env.DISCORD_WEBHOOK_PRERELEASE, {
-					title: "📦 | New Pre-Release",
-					url: "https://github.com/pyclashbot/py-clash-bot/releases/latest",
-					color: 0xfca503,
-					tagId: "1128136612715450498",
-					...data,
-				});
+				try {
+					await SendEmbed(env.DISCORD_WEBHOOK_PRERELEASE, {
+						title: "📦 | New Pre-Release",
+						url: "https://github.com/pyclashbot/py-clash-bot/releases/latest",
+						color: 0xfca503,
+						tagId: "1128136612715450498",
+						...data,
+					});
+				} catch (err) {
+					console.error(
+						"[webhook/prerelease] Failed to send Discord embed:",
+						err,
+					);
+					return new Response("Internal server error", { status: 500 });
+				}
 
-				return new Response("Success", { status: 200 });
+				console.log("[webhook/prerelease] Embed sent successfully");
+				return new Response("OK", { status: 200 });
 			},
 		},
 	},
