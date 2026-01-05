@@ -77,7 +77,8 @@ export async function getReleaseByTag(tag: string): Promise<Release> {
 			tag,
 		});
 		return formatRelease(data);
-	} catch {
+	} catch (error) {
+		console.error("[GitHub] getReleaseByTag failed:", tag, error);
 		throw new GitHubApiError(`Release not found: ${tag}`, 404);
 	}
 }
@@ -86,7 +87,8 @@ export async function getLatestRelease(): Promise<Release> {
 	try {
 		const { data } = await octokit.repos.getLatestRelease(REPO);
 		return formatRelease(data);
-	} catch {
+	} catch (error) {
+		console.error("[GitHub] getLatestRelease failed:", error);
 		throw new GitHubApiError("No releases found", 404);
 	}
 }
@@ -132,7 +134,8 @@ async function fetchAllReleases<T>(
 		}
 
 		return results;
-	} catch {
+	} catch (error) {
+		console.error("[GitHub] fetchAllReleases failed:", error);
 		throw new GitHubApiError("Failed to fetch releases", 500);
 	}
 }
