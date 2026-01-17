@@ -2,12 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import MarkdownCMS from "@/components/cms/MarkdownCMS";
 import DownloadList from "@/components/DownloadList";
 import Footer from "@/components/Footer";
+import { CACHE_HEADERS } from "@/lib/cache";
 import { getReleaseByTag } from "@/lib/github";
 
 const STALE_TIME = 15 * 60 * 1000; // 15 minutes
 
 export const Route = createFileRoute("/releases/$tag")({
 	staleTime: STALE_TIME,
+	headers: () => ({ "Cache-Control": CACHE_HEADERS.IMMUTABLE }),
 	loader: async ({ params }) => {
 		const release = await getReleaseByTag(params.tag);
 		return { release };

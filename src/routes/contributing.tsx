@@ -3,6 +3,7 @@ import { z } from "zod";
 import MarkdownCMS from "@/components/cms/MarkdownCMS";
 import Footer from "@/components/Footer";
 import { VersionSelector } from "@/components/VersionSelector";
+import { CACHE_HEADERS } from "@/lib/cache";
 import {
 	fetchRepoFile,
 	getAllReleasesForSelector,
@@ -18,6 +19,7 @@ const searchSchema = z.object({
 export const Route = createFileRoute("/contributing")({
 	validateSearch: (search) => searchSchema.parse(search),
 	staleTime: STALE_TIME,
+	headers: () => ({ "Cache-Control": CACHE_HEADERS.DYNAMIC }),
 	loaderDeps: ({ search }) => ({ ref: search.ref }),
 	loader: async ({ deps }) => {
 		const [releases, latestRelease] = await Promise.all([

@@ -10,6 +10,7 @@ import {
 	PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CACHE_HEADERS } from "@/lib/cache";
 import { getLatestRelease, listReleasesForTab } from "@/lib/github";
 
 const STALE_TIME = 5 * 60 * 1000; // 5 minutes
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/releases/")({
 		page: Number(search.page) || 1,
 	}),
 	staleTime: STALE_TIME,
+	headers: () => ({ "Cache-Control": CACHE_HEADERS.FREQUENT }),
 	loaderDeps: ({ search }) => ({ tab: search.tab, page: search.page }),
 	loader: async ({ deps }) => {
 		const [latest, paginated] = await Promise.all([
