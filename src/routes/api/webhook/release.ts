@@ -8,9 +8,10 @@ const envSchema = z.object({
 });
 
 export const Route = createFileRoute("/api/webhook/release")({
+	// @ts-expect-error TanStack Start server handlers - types provided by Vite plugin at build time
 	server: {
 		handlers: {
-			POST: async ({ request }) => {
+			POST: async ({ request }: { request: Request }) => {
 				// Validate environment configuration
 				const envResult = envSchema.safeParse(process.env);
 				if (!envResult.success) {
