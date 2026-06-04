@@ -6,7 +6,6 @@ export async function SendEmbed(
 		url?: string;
 		timestamp?: Date;
 		color?: number;
-		tagId?: string;
 	},
 ) {
 	const embed = {
@@ -16,22 +15,13 @@ export async function SendEmbed(
 		timestamp: data.timestamp,
 		color: data.color,
 	};
-	const body: {
-		embeds: {
-			title?: string;
-			description?: string;
-			url?: string;
-			timestamp?: Date;
-			color?: number;
-		}[];
-		content?: string;
-	} = {
+	const body = {
 		embeds: [embed],
+		content: "@here",
+		// `@here` only pings when "everyone" is in the parse list, even though
+		// the mention text itself is `@here` rather than `@everyone`.
+		allowed_mentions: { parse: ["everyone"] },
 	};
-
-	if (data.tagId) {
-		body.content = `<@&${data.tagId}>`;
-	}
 
 	await fetch(webhookUrl, {
 		method: "POST",

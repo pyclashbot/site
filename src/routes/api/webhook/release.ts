@@ -76,7 +76,6 @@ export const ServerRoute = createServerFileRoute(
 				title: "🎁 | New Release",
 				url: "https://github.com/pyclashbot/py-clash-bot/releases/latest",
 				color: 0x03fc49,
-				tagId: "1128136563201671221",
 				...data,
 			});
 		} catch (err) {
