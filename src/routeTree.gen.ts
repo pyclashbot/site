@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ReleasesIndexRouteImport } from './routes/releases/index'
 import { Route as ReleasesLatestRouteImport } from './routes/releases/latest'
 import { Route as ReleasesTagRouteImport } from './routes/releases/$tag'
+import { ServerRoute as DiscordInviteServerRouteImport } from './routes/discord/invite'
 import { ServerRoute as ApiWebhookReleaseServerRouteImport } from './routes/api/webhook/release'
 import { ServerRoute as ApiWebhookReleasePrereleaseServerRouteImport } from './routes/api/webhook/release_.prerelease'
 
@@ -51,6 +52,11 @@ const ReleasesTagRoute = ReleasesTagRouteImport.update({
   id: '/releases/$tag',
   path: '/releases/$tag',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DiscordInviteServerRoute = DiscordInviteServerRouteImport.update({
+  id: '/discord/invite',
+  path: '/discord/invite',
+  getParentRoute: () => rootServerRouteImport,
 } as any)
 const ApiWebhookReleaseServerRoute = ApiWebhookReleaseServerRouteImport.update({
   id: '/api/webhook/release',
@@ -125,27 +131,41 @@ export interface RootRouteChildren {
   ReleasesIndexRoute: typeof ReleasesIndexRoute
 }
 export interface FileServerRoutesByFullPath {
+  '/discord/invite': typeof DiscordInviteServerRoute
   '/api/webhook/release': typeof ApiWebhookReleaseServerRoute
   '/api/webhook/release/prerelease': typeof ApiWebhookReleasePrereleaseServerRoute
 }
 export interface FileServerRoutesByTo {
+  '/discord/invite': typeof DiscordInviteServerRoute
   '/api/webhook/release': typeof ApiWebhookReleaseServerRoute
   '/api/webhook/release/prerelease': typeof ApiWebhookReleasePrereleaseServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
+  '/discord/invite': typeof DiscordInviteServerRoute
   '/api/webhook/release': typeof ApiWebhookReleaseServerRoute
   '/api/webhook/release_/prerelease': typeof ApiWebhookReleasePrereleaseServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/api/webhook/release' | '/api/webhook/release/prerelease'
+  fullPaths:
+    | '/discord/invite'
+    | '/api/webhook/release'
+    | '/api/webhook/release/prerelease'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/api/webhook/release' | '/api/webhook/release/prerelease'
-  id: '__root__' | '/api/webhook/release' | '/api/webhook/release_/prerelease'
+  to:
+    | '/discord/invite'
+    | '/api/webhook/release'
+    | '/api/webhook/release/prerelease'
+  id:
+    | '__root__'
+    | '/discord/invite'
+    | '/api/webhook/release'
+    | '/api/webhook/release_/prerelease'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
+  DiscordInviteServerRoute: typeof DiscordInviteServerRoute
   ApiWebhookReleaseServerRoute: typeof ApiWebhookReleaseServerRoute
   ApiWebhookReleasePrereleaseServerRoute: typeof ApiWebhookReleasePrereleaseServerRoute
 }
@@ -198,6 +218,13 @@ declare module '@tanstack/react-router' {
 }
 declare module '@tanstack/react-start/server' {
   interface ServerFileRoutesByPath {
+    '/discord/invite': {
+      id: '/discord/invite'
+      path: '/discord/invite'
+      fullPath: '/discord/invite'
+      preLoaderRoute: typeof DiscordInviteServerRouteImport
+      parentRoute: typeof rootServerRouteImport
+    }
     '/api/webhook/release': {
       id: '/api/webhook/release'
       path: '/api/webhook/release'
@@ -227,6 +254,7 @@ export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 const rootServerRouteChildren: RootServerRouteChildren = {
+  DiscordInviteServerRoute: DiscordInviteServerRoute,
   ApiWebhookReleaseServerRoute: ApiWebhookReleaseServerRoute,
   ApiWebhookReleasePrereleaseServerRoute:
     ApiWebhookReleasePrereleaseServerRoute,
