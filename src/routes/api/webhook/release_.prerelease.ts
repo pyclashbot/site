@@ -7,17 +7,19 @@ const envSchema = z.object({
 	DISCORD_WEBHOOK_PRERELEASE: z.string().url(),
 });
 
-export const ServerRoute = createServerFileRoute("/api/webhook/release_/prerelease").methods({
+export const ServerRoute = createServerFileRoute(
+	"/api/webhook/release_/prerelease",
+).methods({
 	POST: async ({ request }) => {
 		// Validate environment configuration
 		const envResult = envSchema.safeParse(process.env);
 		if (!envResult.success) {
 			const missing = envResult.error.issues
 				.map((i) => i.path.join("."))
-				.join(", ")
+				.join(", ");
 			console.error(
 				`[webhook/prerelease] Environment configuration error: missing or invalid: ${missing}`,
-			)
+			);
 			return new Response("Internal server error", { status: 500 });
 		}
 		const env = envResult.data;
@@ -29,14 +31,14 @@ export const ServerRoute = createServerFileRoute("/api/webhook/release_/prerelea
 		if (!code) {
 			console.warn(
 				"[webhook/prerelease] Authorization failed: no code parameter provided",
-			)
+			);
 			return new Response("Unauthorized", { status: 401 });
 		}
 
 		if (code !== env.API_ROUTE_SECRET) {
 			console.warn(
 				"[webhook/prerelease] Authorization failed: invalid code parameter",
-			)
+			);
 			return new Response("Unauthorized", { status: 401 });
 		}
 
@@ -53,7 +55,7 @@ export const ServerRoute = createServerFileRoute("/api/webhook/release_/prerelea
 			url?: string;
 			timestamp?: Date;
 			color?: number;
-		}
+		};
 
 		try {
 			data = JSON.parse(reqBody);
@@ -76,12 +78,9 @@ export const ServerRoute = createServerFileRoute("/api/webhook/release_/prerelea
 				color: 0xfca503,
 				tagId: "1128136612715450498",
 				...data,
-			})
+			});
 		} catch (err) {
-			console.error(
-				"[webhook/prerelease] Failed to send Discord embed:",
-				err,
-			)
+			console.error("[webhook/prerelease] Failed to send Discord embed:", err);
 			return new Response("Internal server error", { status: 500 });
 		}
 

@@ -29,7 +29,8 @@ jobs:
       - name: Setup Biome
         uses: biomejs/setup-biome@v2
         with:
-          version: latest
+          # Pin to the version in package.json so CI matches local + the biome.json schema.
+          version: 2.3.11
 
       - name: Run Biome
         run: biome ci .
