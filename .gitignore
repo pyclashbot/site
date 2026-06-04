@@ -9,7 +9,6 @@ dist
 
 # TanStack
 .tanstack
-routeTree.gen.ts
 
 # Vite
 *.local

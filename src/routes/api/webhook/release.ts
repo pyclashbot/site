@@ -7,7 +7,9 @@ const envSchema = z.object({
 	DISCORD_WEBHOOK_RELEASE: z.string().url(),
 });
 
-export const ServerRoute = createServerFileRoute("/api/webhook/release").methods({
+export const ServerRoute = createServerFileRoute(
+	"/api/webhook/release",
+).methods({
 	POST: async ({ request }) => {
 		// Validate environment configuration
 		const envResult = envSchema.safeParse(process.env);
@@ -78,10 +80,7 @@ export const ServerRoute = createServerFileRoute("/api/webhook/release").methods
 				...data,
 			});
 		} catch (err) {
-			console.error(
-				"[webhook/release] Failed to send Discord embed:",
-				err,
-			);
+			console.error("[webhook/release] Failed to send Discord embed:", err);
 			return new Response("Internal server error", { status: 500 });
 		}
 
